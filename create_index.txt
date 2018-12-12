@@ -1,0 +1,30 @@
+PUT dantri
+{
+    "mappings" : {
+        "doc" : {
+            "properties" : {
+                "title" : { "type" : "text" },
+                "description" : { "type" : "text" },
+                "content" : { "type" : "text" },
+                "url" : { "type" : "text" },
+                "time" : { "type" : "double" }
+            }
+        }
+    }
+}
+ curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/dantri/doc/_bulk?pretty' --data-binary @data1.json
+
+PUT title
+{
+    "mappings": {
+        "doc" : {
+            "properties" : {
+                "suggest" : {
+                    "type" : "completion"
+                }
+            }
+        }
+    }
+}
+
+ curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/title/_doc/_bulk?pretty' --data-binary @datav3.json
